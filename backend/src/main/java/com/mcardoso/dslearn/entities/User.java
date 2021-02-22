@@ -1,5 +1,7 @@
 package com.mcardoso.dslearn.entities;
 
+import org.aspectj.weaver.ast.Not;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
@@ -22,6 +24,9 @@ public class User implements Serializable {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Notification> notifications = new ArrayList<>();
 
     public User() {
     }
