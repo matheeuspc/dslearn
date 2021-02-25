@@ -19,8 +19,8 @@ public class Notification implements Serializable {
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant moment;
 
-    private Boolean read = false;
-    private String rout;
+    private Boolean read;
+    private String route;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -29,12 +29,12 @@ public class Notification implements Serializable {
     public Notification () {
     }
 
-    public Notification(Long id, String text, Instant moment, Boolean read, String rout, User user) {
+    public Notification(Long id, String text, Instant moment, Boolean read, String route, User user) {
         this.id = id;
         this.text = text;
         this.moment = moment;
         this.read = read;
-        this.rout = rout;
+        this.route = route;
         this.user = user;
     }
 
@@ -70,12 +70,12 @@ public class Notification implements Serializable {
         this.read = read;
     }
 
-    public String getRout() {
-        return rout;
+    public String getRoute() {
+        return route;
     }
 
-    public void setRout(String rout) {
-        this.rout = rout;
+    public void setRoute(String rout) {
+        this.route = rout;
     }
 
     public User getUser() {
