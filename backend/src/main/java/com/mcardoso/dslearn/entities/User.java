@@ -1,6 +1,5 @@
 package com.mcardoso.dslearn.entities;
 
-import org.aspectj.weaver.ast.Not;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -129,4 +128,14 @@ public class User implements UserDetails, Serializable {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    public boolean hasRole(String roleName){
+        for (Role role : roles){
+            if (role.getAuthority().equals(roleName)){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
