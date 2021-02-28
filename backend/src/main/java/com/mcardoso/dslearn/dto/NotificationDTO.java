@@ -4,10 +4,13 @@ import com.mcardoso.dslearn.entities.Notification;
 import com.mcardoso.dslearn.entities.User;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
-public class NotificationDTO {
+public class NotificationDTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String text;
