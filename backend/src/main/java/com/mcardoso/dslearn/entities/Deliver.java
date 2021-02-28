@@ -96,6 +96,18 @@ public class Deliver implements Serializable {
         this.correctCount = correctCount;
     }
 
+    public Lesson getLesson() {
+        return lesson;
+    }
+
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
+    }
+
+    public Enrollment getEnrollment() {
+        return enrollment;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
