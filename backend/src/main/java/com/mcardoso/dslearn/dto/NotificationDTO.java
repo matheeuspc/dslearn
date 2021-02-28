@@ -1,41 +1,40 @@
-package com.mcardoso.dslearn.entities;
+package com.mcardoso.dslearn.dto;
+
+import com.mcardoso.dslearn.entities.Notification;
+import com.mcardoso.dslearn.entities.User;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
-@Entity
-@Table(name = "tb_notification")
-public class Notification implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class NotificationDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String text;
-
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant moment;
-
-    private Boolean read;
+    private boolean read;
     private String route;
+    private Long userId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-
-    public Notification () {
+    public NotificationDTO() {
     }
 
-    public Notification(Long id, String text, Instant moment, Boolean read, String route, User user) {
+    public NotificationDTO(Long id, String text, Instant moment, Boolean read, String route, Long userId) {
         this.id = id;
         this.text = text;
         this.moment = moment;
         this.read = read;
         this.route = route;
-        this.user = user;
+        this.userId = userId;
+    }
+
+    public NotificationDTO(Notification entity) {
+        id = entity.getId();
+        text = entity.getText();
+        moment = entity.getMoment();
+        read = entity.isRead();
+        route = entity.getRoute();
+        userId = entity.getUser().getId();
     }
 
     public Long getId() {
@@ -62,7 +61,7 @@ public class Notification implements Serializable {
         this.moment = moment;
     }
 
-    public boolean isRead() {
+    public Boolean isRead() {
         return read;
     }
 
@@ -74,23 +73,23 @@ public class Notification implements Serializable {
         return route;
     }
 
-    public void setRoute(String rout) {
-        this.route = rout;
+    public void setRoute(String route) {
+        this.route = route;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Notification that = (Notification) o;
+        NotificationDTO that = (NotificationDTO) o;
         return id.equals(that.id);
     }
 
